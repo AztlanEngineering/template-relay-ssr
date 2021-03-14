@@ -1,0 +1,147 @@
+schema {
+  query: Query
+  mutation: Mutation
+}
+
+type CategoryNode implements Node {
+  id: ID!
+  name: String!
+  ingredients(offset: Int, before: String, after: String, first: Int, last: Int, name: String, name_Icontains: String, name_Istartswith: String, notes: String, notes_Icontains: String, category: ID, category_Name: String): IngredientNodeConnection!
+}
+
+type CategoryNodeConnection {
+  pageInfo: PageInfo!
+  edges: [CategoryNodeEdge]!
+}
+
+type CategoryNodeEdge {
+  node: CategoryNode
+  cursor: String!
+}
+
+scalar DateTime
+
+input DeleteJSONWebTokenCookieInput {
+  clientMutationId: String
+}
+
+type DeleteJSONWebTokenCookiePayload {
+  deleted: Boolean!
+  clientMutationId: String
+}
+
+input DeleteRefreshTokenCookieInput {
+  clientMutationId: String
+}
+
+type DeleteRefreshTokenCookiePayload {
+  deleted: Boolean!
+  clientMutationId: String
+}
+
+scalar GenericScalar
+
+type IngredientNode implements Node {
+  id: ID!
+  name: String!
+  notes: String!
+  category: CategoryNode
+}
+
+type IngredientNodeConnection {
+  pageInfo: PageInfo!
+  edges: [IngredientNodeEdge]!
+}
+
+type IngredientNodeEdge {
+  node: IngredientNode
+  cursor: String!
+}
+
+type Mutation {
+  tokenAuth(input: ObtainJSONWebTokenInput!): ObtainJSONWebTokenPayload
+  verifyToken(input: VerifyInput!): VerifyPayload
+  refreshToken(input: RefreshInput!): RefreshPayload
+  deleteTokenCookie(input: DeleteJSONWebTokenCookieInput!): DeleteJSONWebTokenCookiePayload
+  revokeToken(input: RevokeInput!): RevokePayload
+  deleteRefreshTokenCookie(input: DeleteRefreshTokenCookieInput!): DeleteRefreshTokenCookiePayload
+}
+
+interface Node {
+  id: ID!
+}
+
+input ObtainJSONWebTokenInput {
+  clientMutationId: String
+  username: String!
+  password: String!
+}
+
+type ObtainJSONWebTokenPayload {
+  payload: GenericScalar!
+  refreshExpiresIn: Int!
+  user: UserType
+  clientMutationId: String
+  token: String!
+}
+
+type PageInfo {
+  hasNextPage: Boolean!
+  hasPreviousPage: Boolean!
+  startCursor: String
+  endCursor: String
+}
+
+type Query {
+  category(id: ID!): CategoryNode
+  allCategories(offset: Int, before: String, after: String, first: Int, last: Int, name: String, ingredients: [ID]): CategoryNodeConnection
+  ingredient(id: ID!): IngredientNode
+  allIngredients(offset: Int, before: String, after: String, first: Int, last: Int, name: String, name_Icontains: String, name_Istartswith: String, notes: String, notes_Icontains: String, category: ID, category_Name: String): IngredientNodeConnection
+  hello: String
+}
+
+input RefreshInput {
+  token: String
+  clientMutationId: String
+}
+
+type RefreshPayload {
+  payload: GenericScalar!
+  refreshExpiresIn: Int!
+  clientMutationId: String
+  token: String!
+}
+
+input RevokeInput {
+  refreshToken: String
+  clientMutationId: String
+}
+
+type RevokePayload {
+  revoked: Int!
+  clientMutationId: String
+}
+
+type UserType implements Node {
+  id: ID!
+  password: String!
+  lastLogin: DateTime
+  isSuperuser: Boolean!
+  username: String!
+  firstName: String!
+  lastName: String!
+  email: String!
+  isStaff: Boolean!
+  isActive: Boolean!
+  dateJoined: DateTime!
+}
+
+input VerifyInput {
+  token: String
+  clientMutationId: String
+}
+
+type VerifyPayload {
+  payload: GenericScalar!
+  clientMutationId: String
+}

@@ -1,0 +1,10 @@
+#!/bin/sh
+
+echo "\n\n** PRE-COMMIT => Regenerating schema.graphql"
+npm run generate:schema
+git add schema.graphql
+
+echo "\n\n** PRE-COMMIT => Pre Compiling Relay"
+npm run relay
+
+exit 0
