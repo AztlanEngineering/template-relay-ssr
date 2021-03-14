@@ -20,6 +20,10 @@ function QueryFetcherExample() {
     disposeQuery,
   ] = useQueryLoader(query);
 
+  React.useEffect(() => {
+    loadQuery()
+  }, [])
+
   return (<>
     {
       queryReference == null && (<button
@@ -33,6 +37,8 @@ function QueryFetcherExample() {
         <button onClick={disposeQuery}>
           Click to hide the name and dispose the query.
         </button>
+    {/*
+      */}
         <React.Suspense fallback="Loading">
           <NameDisplay queryReference={queryReference} />
         </React.Suspense>
@@ -52,10 +58,12 @@ const App = () => {
   return (
     <>
     <h2>Hello application</h2>
-    <Suspense fallback='Loading'>
     <QueryFetcherExample />
       
+    {/*
+    <Suspense fallback='Loading'>
     </Suspense>
+    */}
     </>
   )
 }

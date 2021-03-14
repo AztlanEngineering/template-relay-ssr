@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-//import ReactDOMServer from 'react-dom/server' //Not in use if we use apollo own renderer
+import ReactDOMServer from 'react-dom/server' //Not in use if we use apollo own renderer
 //
 
 //import { ChunkExtractor } from '@loadable/server'
@@ -27,7 +27,6 @@ export default async(req, res) => {
         location={req.originalUrl || req.url}
         context={routerContext}
       >
-        <h1>test</h1>
         <BaseApp />
       </StaticRouter>
   )
@@ -36,6 +35,7 @@ export default async(req, res) => {
   //  extractor.collectChunks(appJsx)
   //)
 
+  const html = ReactDOMServer.renderToString(appJsx);
   /* eslint-disable no-console */
   console.log(req.method, ' ', req.originalUrl || req.url, JSON.stringify(routerContext))
   /* eslint-enable no-console */
