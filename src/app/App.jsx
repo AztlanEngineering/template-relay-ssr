@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { Suspense } from 'react'
+import { useEffect, Suspense } from 'react'
 //import { graphql } from 'babel-plugin-relay/macro';
 
 import {
@@ -20,7 +20,7 @@ function QueryFetcherExample() {
     disposeQuery,
   ] = useQueryLoader(query);
 
-  React.useEffect(() => {
+  useEffect(() => {
     loadQuery()
   }, [])
 
@@ -33,7 +33,7 @@ function QueryFetcherExample() {
       </button>)
     }
     {
-      queryReference != null && (<>
+      (queryReference != null || true) && (<>
         <button onClick={disposeQuery}>
           Click to hide the name and dispose the query.
         </button>
@@ -50,7 +50,7 @@ function QueryFetcherExample() {
 function NameDisplay({ queryReference }) {
   const data = usePreloadedQuery(query, queryReference);
 
-  return <h1>{ JSON.stringify(data) }</h1>;
+  return <h1>Query result : { JSON.stringify(data) }</h1>;
 }
 
 const App = () => {
