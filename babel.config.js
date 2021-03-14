@@ -1,10 +1,16 @@
 module.exports = function(api) {
   api.cache(true)
 
+  console.log(`OK => Compiling in Babel`)
+  console.log(`OK => NODE_ENV=${process.env.NODE_ENV}`)
+  console.log(`OK => SSR=${process.env.SSR}`)
+
+  const isSSR = process.env.SSR === 'true'
+
   const presets = [
     ["@babel/preset-env", 
       { 
-        "modules": false 
+        "modules": isSSR ? 'cjs' : false 
       }
     ],
     "@babel/react", 
@@ -23,11 +29,18 @@ module.exports = function(api) {
         //"version": "7.0.0-beta.0"
       }
     ],
+    ['babel-plugin-inline-import',
+      {
+        extensions:[
+          '.html',
+          '.xml'
+        ]
+      }
+    ],
     [
       'module-resolver', {
-        root:['./'],
+        root:['./src'],
         "alias": {
-          "@app": "./src/app",
         }
       }
     ]

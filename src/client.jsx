@@ -2,7 +2,7 @@ import * as React from 'react'
 import { render } from 'react-dom'
 import environment from './environment'
 
-import BaseApp from '@app/BaseApp'
+import BaseApp from 'app/BaseApp'
 
 const rootElement = document.getElementById('main')
 console.log('whatever2')
