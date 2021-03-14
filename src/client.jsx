@@ -1,5 +1,6 @@
 import * as React from 'react'
 import { render } from 'react-dom'
+import environment from './environment'
 
 import BaseApp from '@app/BaseApp'
 
@@ -12,7 +13,7 @@ console.log('whatever2')
   console.log(rootElement.hasChildNodes(), rootElement.innerHTML) */
 
 render(
-  <BaseApp/>,
+  <BaseApp relayEnvironment={ environment }/>,
   rootElement)
 
 if (module.hot) {

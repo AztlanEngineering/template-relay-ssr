@@ -3,10 +3,10 @@ import { RelayEnvironmentProvider } from 'react-relay/hooks'
 import environment from '../environment'
 import App from '@app/App'
 
-const BaseApp = () => {
+const BaseApp = ({relayEnvironment}) => {
   //
   return (
-    <RelayEnvironmentProvider environment={environment}>
+    <RelayEnvironmentProvider environment={relayEnvironment}>
       <App/>
     </RelayEnvironmentProvider>
   )

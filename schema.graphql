@@ -3,19 +3,58 @@ schema {
   mutation: Mutation
 }
 
-type CategoryNode implements Node {
+type BlogCategoryNode implements Node {
   id: ID!
-  name: String!
-  ingredients(offset: Int, before: String, after: String, first: Int, last: Int, name: String, name_Icontains: String, name_Istartswith: String, notes: String, notes_Icontains: String, category: ID, category_Name: String): IngredientNodeConnection!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  name: String
+  slug: String!
+  seoTitleTag: String
+  seoMetaDescription: String
+  description: String
+  blogPosts(offset: Int, before: String, after: String, first: Int, last: Int, slug: String, slug_Icontains: String, slug_Istartswith: String, title: String, title_Icontains: String, category: ID): BlogPostNodeConnection!
 }
 
-type CategoryNodeConnection {
+type BlogCategoryNodeConnection {
   pageInfo: PageInfo!
-  edges: [CategoryNodeEdge]!
+  edges: [BlogCategoryNodeEdge]!
 }
 
-type CategoryNodeEdge {
-  node: CategoryNode
+type BlogCategoryNodeEdge {
+  node: BlogCategoryNode
+  cursor: String!
+}
+
+enum BlogPostItemType {
+  HTTPS_SCHEMA_ORG_BLOGPOSTING
+  HTTPS_SCHEMA_ORG_FAQ
+  HTTPS_SCHEMA_ORG_HOWTO
+}
+
+type BlogPostNode implements Node {
+  id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  title: String
+  slug: String!
+  seoTitleTag: String
+  seoMetaDescription: String
+  description: String
+  content: String
+  author: UserType
+  category: BlogCategoryNode
+  itemType: BlogPostItemType!
+  wordCount: Int
+  publishedOn: DateTime
+}
+
+type BlogPostNodeConnection {
+  pageInfo: PageInfo!
+  edges: [BlogPostNodeEdge]!
+}
+
+type BlogPostNodeEdge {
+  node: BlogPostNode
   cursor: String!
 }
 
@@ -41,23 +80,6 @@ type DeleteRefreshTokenCookiePayload {
 
 scalar GenericScalar
 
-type IngredientNode implements Node {
-  id: ID!
-  name: String!
-  notes: String!
-  category: CategoryNode
-}
-
-type IngredientNodeConnection {
-  pageInfo: PageInfo!
-  edges: [IngredientNodeEdge]!
-}
-
-type IngredientNodeEdge {
-  node: IngredientNode
-  cursor: String!
-}
-
 type Mutation {
   tokenAuth(input: ObtainJSONWebTokenInput!): ObtainJSONWebTokenPayload
   verifyToken(input: VerifyInput!): VerifyPayload
@@ -69,6 +91,10 @@ type Mutation {
 
 interface Node {
   id: ID!
+}
+
+type OAuth2LinksProvider {
+  google: String!
 }
 
 input ObtainJSONWebTokenInput {
@@ -93,11 +119,15 @@ type PageInfo {
 }
 
 type Query {
-  category(id: ID!): CategoryNode
-  allCategories(offset: Int, before: String, after: String, first: Int, last: Int, name: String, ingredients: [ID]): CategoryNodeConnection
-  ingredient(id: ID!): IngredientNode
-  allIngredients(offset: Int, before: String, after: String, first: Int, last: Int, name: String, name_Icontains: String, name_Istartswith: String, notes: String, notes_Icontains: String, category: ID, category_Name: String): IngredientNodeConnection
+  blogCategory(id: ID!): BlogCategoryNode
+  allBlogCategories(offset: Int, before: String, after: String, first: Int, last: Int, name: String, slug: String): BlogCategoryNodeConnection
+  blogPost(id: ID!): BlogPostNode
+  allBlogPosts(offset: Int, before: String, after: String, first: Int, last: Int, slug: String, slug_Icontains: String, slug_Istartswith: String, title: String, title_Icontains: String, category: ID): BlogPostNodeConnection
+  oAuth2Login(resource: String!, additionalStatePayload: String): OAuth2LinksProvider
   hello: String
+  authHello: String
+  time: DateTime
+  customMessage: String
 }
 
 input RefreshInput {
@@ -134,6 +164,7 @@ type UserType implements Node {
   isStaff: Boolean!
   isActive: Boolean!
   dateJoined: DateTime!
+  blogPosts(offset: Int, before: String, after: String, first: Int, last: Int, slug: String, slug_Icontains: String, slug_Istartswith: String, title: String, title_Icontains: String, category: ID): BlogPostNodeConnection!
 }
 
 input VerifyInput {
