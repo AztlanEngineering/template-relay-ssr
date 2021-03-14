@@ -1,17 +1,22 @@
-/* tslint:disable */
+/**
+ * @flow
+ */
+
 /* eslint-disable */
-// @ts-nocheck
 
-import { ConcreteRequest } from "relay-runtime";
-export type AppHelloQueryVariables = {};
-export type AppHelloQueryResponse = {
-    readonly hello: string | null;
-};
-export type AppHelloQuery = {
-    readonly response: AppHelloQueryResponse;
-    readonly variables: AppHelloQueryVariables;
-};
+'use strict';
 
+/*::
+import type { ConcreteRequest } from 'relay-runtime';
+export type AppHelloQueryVariables = {||};
+export type AppHelloQueryResponse = {|
+  +hello: ?string
+|};
+export type AppHelloQuery = {|
+  variables: AppHelloQueryVariables,
+  response: AppHelloQueryResponse,
+|};
+*/
 
 
 /*
@@ -20,7 +25,7 @@ query AppHelloQuery {
 }
 */
 
-const node: ConcreteRequest = (function(){
+const node/*: ConcreteRequest*/ = (function(){
 var v0 = [
   {
     "alias": null,
@@ -57,5 +62,7 @@ return {
   }
 };
 })();
-(node as any).hash = '48d6b504263572465edb4e9b19474bf3';
-export default node;
+// prettier-ignore
+(node/*: any*/).hash = '48d6b504263572465edb4e9b19474bf3';
+
+module.exports = node;

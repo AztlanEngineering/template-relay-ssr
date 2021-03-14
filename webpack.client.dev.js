@@ -9,11 +9,11 @@ const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPl
 
 module.exports = {
   entry:[
-    path.resolve(__dirname, 'src/client.tsx'),
+    path.resolve(__dirname, 'src/client.jsx'),
   ],
 
   resolve: {
-    extensions: ['.ts', '.tsx', '.js'],
+    extensions: ['.ts', '.tsx', '.js', '.jsx'],
     /*
     fallback: {
       "fs": false,
@@ -73,7 +73,7 @@ module.exports = {
   module:{
     rules:[
       {
-        test: /\.ts(x?)$/,
+        test: /\.(j|t)s(x?)$/,
         exclude: /node_modules/,
         use: [
           {

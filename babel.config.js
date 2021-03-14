@@ -2,9 +2,12 @@ module.exports = function(api) {
   api.cache(true)
 
   const presets = [
+    ["@babel/preset-env", 
+      { 
+        "modules": false 
+      }
+    ],
     "@babel/react", 
-    "@babel/typescript", 
-    ["@babel/preset-env", { "modules": false }]
   ]
 
   const plugins = [

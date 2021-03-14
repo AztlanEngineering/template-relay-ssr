@@ -13,7 +13,7 @@ const query = graphql`
   }
 `;
 
-function QueryFetcherExample(): React.MixedElement {
+function QueryFetcherExample() {
   const [
     queryReference,
     loadQuery,
