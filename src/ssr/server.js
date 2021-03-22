@@ -11,7 +11,7 @@ const app = express()
 const router = express.Router()
 
 const logRequestStart = (req, res, next) => {
-  console.info(`${req.method} ${req.originalUrl}`)
+  //console.info(`${req.method} ${req.originalUrl}`)
   next()
 }
 

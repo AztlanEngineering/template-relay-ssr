@@ -1,3 +1,4 @@
+require('dotenv').config()
 import 'regenerator-runtime/runtime';
 
 import {
@@ -30,5 +31,6 @@ const environment = new Environment({
   network,
   store,
 });
+
 
 export default environment;

@@ -6,6 +6,7 @@ module.exports = {
   },
   env: {
     browser: true,
+    // We need node env because we are doing SSR
     node: true,
   },
   parser: 'babel-eslint',
