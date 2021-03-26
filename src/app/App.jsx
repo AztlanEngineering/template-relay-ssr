@@ -1,93 +1,64 @@
 import * as React from 'react'
 import { useEffect, Suspense } from 'react'
 import SSRSuspense from 'app/SSRSuspense'
-//import { graphql } from 'babel-plugin-relay/macro';
+import { Button, Card } from '@pareto-engineering/design-system'
+import { Helmet } from 'react-helmet'
+// import { graphql } from 'babel-plugin-relay/macro';
 
 import {
   useQueryLoader,
   useLazyLoadQuery,
   useRelayEnvironment,
   usePreloadedQuery,
-} from 'react-relay/hooks';
-
-const query = graphql`
-  query AppHelloQuery {
-    hello
-  }
-`;
-
-function QueryFetcherExample() {
-  const [
-    queryReference,
-    loadQuery,
-    disposeQuery,
-  ] = useQueryLoader(query);
-
-  useEffect(() => {
-    loadQuery()
-  }, [])
-
-  return (<>
-    {
-      queryReference == null && (<button
-        onClick={() => loadQuery({})}
-      >
-        Click to reveal the name
-      </button>)
-    }
-    {
-      (queryReference != null) && (<>
-        <button onClick={disposeQuery}>
-          Click to hide the name and dispose the query.
-        </button>
-    {/*
-      */}
-        <React.Suspense fallback="Loading">
-          <NameDisplay queryReference={queryReference} />
-        </React.Suspense>
-      </>)
-    }
-  </>);
-}
-
-function NameDisplay({ queryReference }) {
-  const data = usePreloadedQuery(query, queryReference);
-
-  return <h1>Query result : { JSON.stringify(data) }</h1>;
-}
+} from 'react-relay/hooks'
 
 function FetcherExample() {
-    const data = useLazyLoadQuery(
+  const data = useLazyLoadQuery(
     graphql`
       query AppHelloQuery {
         hello
       }
     `,
     {},
-    //{id: 4},
-    //{fetchPolicy: 'store-only'},
-  );
+    // {id: 4},
+    // {fetchPolicy: 'store-only'},
+  )
   return (
-    <h1>The result of the query is {JSON.stringify(data)}</h1>
+    <h1>
+      The result of the query is
+      {JSON.stringify(data)}
+    </h1>
 
   )
 }
 
-const App = () => {
-  //const environment = useRelayEnvironment()
-  //console.log(2222778877, environment.getStore().getSource())
+const App = () =>
+  // const environment = useRelayEnvironment()
+  // console.log(2222778877, environment.getStore().getSource())
   //
-  return (
+  (
     <>
-    <h1>Hello application</h1>
-    <SSRSuspense>
-      <FetcherExample />
-    </SSRSuspense>
-      
-    {/*
+      <Helmet>
+        <title>This title is set up using react helmet</title>
+        <meta name="description" 
+content="This is an example of a meta description. 
+This will often show up in search results. This is set up using Helmet."/>
+        
+      </Helmet>
+      <h1>Hello application with Helmet</h1>
+      <SSRSuspense fallback='Loading...'>
+        <FetcherExample />
+        <Button className="x-accent1">
+          Test
+        </Button>
+        <Card>
+          Test
+        </Card>
+      </SSRSuspense>
+
+      {/*
     */}
     </>
   )
-}
 
 export default App

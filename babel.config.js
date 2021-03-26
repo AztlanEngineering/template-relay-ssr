@@ -1,58 +1,75 @@
-module.exports = function(api) {
-  api.cache(true)
+/* eslint-disable no-console -- Used for monitoring */
+/* eslint-disable func-names -- Babel default syntax */
+module.exports = function (api) {
+  const isProd = api.cache(() => process.env.NODE_ENV === 'production')
+  const isSSR = process.env.SSR === 'true'
 
-  console.log(`OK => Compiling in Babel`)
+  console.log('OK => Compiling in Babel')
   console.log(`OK => NODE_ENV=${process.env.NODE_ENV}`)
   console.log(`OK => SSR=${process.env.SSR}`)
 
-  const isSSR = process.env.SSR === 'true'
-
   const presets = [
-    ["@babel/preset-env", 
-      { 
-        "modules": isSSR ? 'cjs' : false 
-      }
+    ['@babel/preset-env',
+      {
+        modules:isSSR ? 'cjs' : false,
+      },
     ],
-    "@babel/react", 
+    '@babel/react',
   ]
 
   const plugins = [
     'relay',
     [
-      "@babel/plugin-transform-runtime",
+      '@babel/plugin-transform-runtime',
       {
-        "absoluteRuntime": false,
-        "corejs": false,
-        "helpers": true,
-        "regenerator": true,
-        "useESModules": true,
-        //"version": "7.0.0-beta.0"
-      }
+        absoluteRuntime:false,
+        corejs         :false,
+        helpers        :true,
+        regenerator    :true,
+        useESModules   :true,
+        // "version": "7.0.0-beta.0"
+      },
     ],
-    ['babel-plugin-inline-import',
+    ['inline-import',
       {
         extensions:[
           '.html',
-          '.xml'
-        ]
-      }
+          '.xml',
+        ],
+      },
     ],
     [
       'module-resolver', {
-        root:['./src'],
-        "alias": {
-          //"@app": "./src/app",
-        }
-      }
-    ]
+        root :['./src'],
+        alias:{
+          // "@app": "./src/app",
+        },
+      },
+    ],
   ]
+
+  if (isProd) {
+    plugins.push(
+      'transform-react-remove-prop-types',
+    )
+  }
+
+  if (isSSR) {
+    plugins.push(
+      ['css-modules-transform', {
+        extensions:['.css', '.scss'],
+        devMode   :true,
+        ignore    :'*.styles.scss',
+      },
+      ],
+    )
+  }
 
   return {
     presets,
-    plugins
+    plugins,
   }
 }
-
 
 /*
  // The API exposes the following:

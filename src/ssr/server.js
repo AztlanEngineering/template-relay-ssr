@@ -1,9 +1,8 @@
 /* eslint-disable no-console */
-//import patchAlias from './patchAlias'
-require('dotenv').config()
+// import patchAlias from './patchAlias'
 import express from 'express'
-import serverRenderer from './renderer.js'
 import path from 'path'
+import serverRenderer from './renderer.js'
 
 const PORT = process.env.PORT || 3003
 
@@ -11,7 +10,7 @@ const app = express()
 const router = express.Router()
 
 const logRequestStart = (req, res, next) => {
-  //console.info(`${req.method} ${req.originalUrl}`)
+  // console.info(`${req.method} ${req.originalUrl}`)
   next()
 }
 
@@ -31,6 +30,5 @@ app.listen(PORT, (error) => {
     return console.log('something bad happened', error)
   }
 
-  console.log('🛹 Listening on ' + PORT + '...')
+  console.log(`🛹 Listening on ${PORT}...`)
 })
-

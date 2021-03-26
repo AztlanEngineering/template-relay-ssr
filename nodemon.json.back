@@ -8,7 +8,7 @@
     "SSR":true
   },
   "execMap": {
-    "js": "babel-node --stack-trace-limit=1000 --config-file ./babel.config.js"
+    "js": "babel-node -r dotenv/config --stack-trace-limit=1000 --config-file ./babel.config.js"
   },
   "ext": ".js,.md,.graphql, .jsx",
   "watch": "./src/"

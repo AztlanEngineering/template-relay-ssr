@@ -1,20 +1,21 @@
-require('dotenv').config()
-import 'regenerator-runtime/runtime';
+/* eslint-disable import/no-extraneous-dependencies -- added via babel */
+import 'regenerator-runtime/runtime'
+/* eslint-enable import/no-extraneous-dependencies */
 
 import {
   Environment,
-  Network,
+  // Network,
   RecordSource,
   Store,
-} from 'relay-runtime';
+} from 'relay-runtime'
 
-import { 
+import {
   RelayNetworkLayer,
   urlMiddleware,
   loggerMiddleware,
   errorMiddleware,
   perfMiddleware,
-} from 'react-relay-network-modern';
+} from 'react-relay-network-modern'
 
 const network = new RelayNetworkLayer([
   urlMiddleware({
@@ -23,14 +24,13 @@ const network = new RelayNetworkLayer([
   loggerMiddleware(),
   perfMiddleware(),
   errorMiddleware(),
-]);
-const source = new RecordSource();
-const store = new Store(source);
+])
+const source = new RecordSource()
+const store = new Store(source)
 
 const environment = new Environment({
   network,
   store,
-});
+})
 
-
-export default environment;
+export default environment
