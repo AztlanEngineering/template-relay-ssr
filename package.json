@@ -30,7 +30,8 @@
     "compile:renderer": "NODE_ENV=production SSR=true webpack --config ./webpack.ssr.renderer.js",
     "sitemap": "webpack --watch --config ./webpack.sitemap.server.js",
     "compile:sitemap": "webpack --config ./webpack.sitemap.renderer.js",
-    "build-all": "npm run compile:client:prod && npm run compile:renderer && npm run compile:sitemap"
+    "cleanup":"rm -rf ./public && rm -rf ./api",
+    "build-all": "npm run cleanup && npm run compile:client:prod && npm run compile:renderer && npm run compile:sitemap"
   },
   "repository": {
     "type": "git",
