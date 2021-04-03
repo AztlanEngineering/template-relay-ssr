@@ -47,6 +47,9 @@ This will often show up in search results. This is set up using Helmet."
         <Button className="x-accent1">
           Test
         </Button>
+        <Button className="x-accent2">
+          Test
+        </Button>
         <Card>
           Test
         </Card>
