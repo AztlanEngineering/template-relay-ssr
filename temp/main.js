@@ -3066,10 +3066,21 @@ var _reactRelayNetworkModern = __webpack_require__(/*! react-relay-network-moder
 /* eslint-disable import/no-extraneous-dependencies -- added via babel */
 
 /* eslint-enable import/no-extraneous-dependencies */
+let queryRecords;
+
+if (typeof window !== 'undefined') {
+  /* eslint-disable no-underscore-dangle -- special case */
+  const getRecords = () => window.__RELAY_PAYLOADS__;
+  /* eslint-enable no-underscore-dangle */
+
+
+  queryRecords = getRecords();
+}
+
 const network = new _reactRelayNetworkModern.RelayNetworkLayer([(0, _reactRelayNetworkModern.urlMiddleware)({
   url: "http://rdp.779.mx:8000/graphql"
 }), (0, _reactRelayNetworkModern.loggerMiddleware)(), (0, _reactRelayNetworkModern.perfMiddleware)(), (0, _reactRelayNetworkModern.errorMiddleware)()]);
-const source = new _relayRuntime.RecordSource();
+const source = new _relayRuntime.RecordSource(queryRecords);
 const store = new _relayRuntime.Store(source);
 const environment = new _relayRuntime.Environment({
   network,
@@ -3220,10 +3231,13 @@ var _express = _interopRequireDefault(__webpack_require__(/*! express */ "./node
 
 var _path = _interopRequireDefault(__webpack_require__(/*! path */ "path"));
 
-var _renderer = _interopRequireDefault(__webpack_require__(/*! ./renderer.js */ "./src/ssr/renderer.js"));
+var _renderer = _interopRequireDefault(__webpack_require__(/*! ./renderer */ "./src/ssr/renderer.js"));
 
 /* eslint-disable no-console */
-// import patchAlias from './patchAlias'
+
+/* eslint-disable import/no-extraneous-dependencies -- only for dev */
+
+/* eslint-enable import/no-extraneous-dependencies */
 const PORT = process.env.PORT || 3003;
 const app = (0, _express.default)();
 
@@ -3235,12 +3249,18 @@ const logRequestStart = (req, res, next) => {
 };
 
 app.use(logRequestStart);
-console.log(787878, _path.default.resolve(__dirname, '..', 'public'));
-router.use('[-a-z1-9\/]+', _renderer.default); //router.use(express.static(path.resolve(__dirname, '..', '..', 'public')))
+console.log('Static files are served from :', _path.default.resolve(__dirname, '..', 'public'));
+/* eslint-disable no-useless-escape -- regex */
 
-router.use(_express.default.static(_path.default.resolve(__dirname, '..', 'public') //{ maxAge: '30d' },
+router.use('[-a-z1-9\/]+', _renderer.default);
+/* eslint-enable no-useless-escape -- regex */
+// router.use(express.static(path.resolve(__dirname, '..', '..', 'public')))
+
+router.use(_express.default.static(_path.default.resolve(__dirname, '..', 'public') // { maxAge: '30d' },
 ));
 app.use(router);
+/* eslint-disable consistent-return */
+
 app.listen(PORT, error => {
   if (error) {
     return console.log('something bad happened', error);
@@ -3248,6 +3268,7 @@ app.listen(PORT, error => {
 
   console.log(`🛹 Listening on ${PORT}...`);
 });
+/* eslint-enable consistent-return */
 
 /***/ }),
 

@@ -20,8 +20,9 @@ import {
 let queryRecords
 if (typeof window !== 'undefined') {
   /* eslint-disable no-underscore-dangle -- special case */
-  queryRecords = JSON.parse(window.__RELAY_PAYLOADS__)
+  const getRecords = () => window.__RELAY_PAYLOADS__
   /* eslint-enable no-underscore-dangle */
+  queryRecords = getRecords()
 }
 
 const network = new RelayNetworkLayer([

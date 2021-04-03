@@ -1,8 +1,10 @@
 /* eslint-disable no-console */
-// import patchAlias from './patchAlias'
+
+/* eslint-disable import/no-extraneous-dependencies -- only for dev */
 import express from 'express'
+/* eslint-enable import/no-extraneous-dependencies */
 import path from 'path'
-import serverRenderer from './renderer.js'
+import serverRenderer from './renderer'
 
 const PORT = process.env.PORT || 3003
 
@@ -16,18 +18,20 @@ const logRequestStart = (req, res, next) => {
 
 app.use(logRequestStart)
 
-console.log(787878, path.resolve(__dirname, '..', 'public'))
+console.log('Static files are served from :', path.resolve(__dirname, '..', 'public'))
 
-
+/* eslint-disable no-useless-escape -- regex */
 router.use('[-a-z1-9\/]+', serverRenderer)
-//router.use(express.static(path.resolve(__dirname, '..', '..', 'public')))
+/* eslint-enable no-useless-escape -- regex */
+// router.use(express.static(path.resolve(__dirname, '..', '..', 'public')))
 router.use(express.static(
   path.resolve(__dirname, '..', 'public'),
-  //{ maxAge: '30d' },
+  // { maxAge: '30d' },
 ))
 
 app.use(router)
 
+/* eslint-disable consistent-return */
 app.listen(PORT, (error) => {
   if (error) {
     return console.log('something bad happened', error)
@@ -35,3 +39,4 @@ app.listen(PORT, (error) => {
 
   console.log(`🛹 Listening on ${PORT}...`)
 })
+/* eslint-enable consistent-return */
