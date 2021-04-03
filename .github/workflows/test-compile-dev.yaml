@@ -12,7 +12,8 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [12.x, 14.x]
+        #node-version: [12.x, 14.x]
+        node-version: [14.x]
 
 
     steps:
@@ -37,6 +38,17 @@ jobs:
       with:
         persist-credentials: false # otherwise, the token used is the GITHUB_TOKEN, instead of your personal token
         fetch-depth: 0 # otherwise, you will failed to push refs to dest repo
+    - id: cache-modules
+      uses: actions/cache@v1
+      with:
+        path: ./node_modules
+        key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
+
+    - name: Install dependencies
+      if: steps.cache-pipenv.outputs.cache-hit != 'true'
+      run: |
+        npm install
+
     - name: Create local changes
       run: npm run build-all
     - name: Commit files
