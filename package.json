@@ -18,7 +18,7 @@
     "install:hooks": "git config --local core.hooksPath .githooks/",
     "fetch-schema:dev": "node scripts/fetchSchema.js",
     "fetch-schema:prod": "node scripts/fetchSchema.js -- --ref production",
-    "fetch-schema": "npm run fetch-schema:dev",
+    "fetch-schema": "npm run fetch-schema:prod",
     "reset:generated": "rm -rf ./**/__generated__",
     "test:eslint": "eslint --ext .jsx,.js src/",
     "testconfig:stylelint": "stylelint src/styles/local.scss",
