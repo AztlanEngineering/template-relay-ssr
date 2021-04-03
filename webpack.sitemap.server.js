@@ -5,7 +5,7 @@ const NodemonPlugin = require('nodemon-webpack-plugin') // Ding
 
 module.exports = {
   entry:[
-    path.resolve(__dirname, 'src/ssr/server.js'),
+    path.resolve(__dirname, 'src/sitemap/server.js'),
   ],
 
   target:'node',
@@ -16,7 +16,7 @@ module.exports = {
 
   output:{
     path    :path.resolve(__dirname, 'temp/'),
-    filename:'ssr.js',
+    filename:'sitemap.js',
     // publicPath:'/'
     // libraryTarget
   },
@@ -86,35 +86,6 @@ module.exports = {
             loader:'babel-loader',
           },
         ],
-      },
-      {
-        test:/bem\/index\.(s?)css$/i,
-        use :[
-          // Creates `style` nodes from JS strings
-          // 'style-loader',
-          // Translates CSS into CommonJS
-          {
-            loader :'css-loader',
-            options:{
-              url    :false,
-              modules:{
-                // We only activate CSS modules for the file containing the BEM rules
-                auto            :(resourcePath) => resourcePath.includes('@pareto-engineering/bem'),
-                // exportGlobals: true,
-                // namedExport:true,
-                exportOnlyLocals:true,
-              },
-            },
-          },
-
-          // Compiles Sass to CSS
-          'sass-loader',
-        ],
-      },
-      {
-        test   :/\.(s?)css$/i,
-        exclude:/@pareto-engineering\/bem/,
-        loader :'ignore-loader',
       },
 
     ],

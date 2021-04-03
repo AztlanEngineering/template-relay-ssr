@@ -3,33 +3,25 @@
 /* eslint-disable import/no-extraneous-dependencies -- only for dev */
 import express from 'express'
 /* eslint-enable import/no-extraneous-dependencies */
-import path from 'path'
 import renderer from './renderer'
 
-console.log('OK => Loading the ssr dev server')
+console.log('OK => Loading the sitemap dev server')
 
-const PORT = process.env.PORT || 3003
+const PORT = 3888
 
 const app = express()
 const router = express.Router()
 
 const logRequestStart = (req, res, next) => {
-  // console.info(`${req.method} ${req.originalUrl}`)
+  console.info(`${req.method} ${req.originalUrl}`)
   next()
 }
 
 app.use(logRequestStart)
 
-console.log('Static files are served from :', path.resolve(__dirname, '..', 'public'))
-
 /* eslint-disable no-useless-escape -- regex */
 router.use('[-a-z1-9\/]+', renderer)
 /* eslint-enable no-useless-escape -- regex */
-// router.use(express.static(path.resolve(__dirname, '..', '..', 'public')))
-router.use(express.static(
-  path.resolve(__dirname, '..', 'public'),
-  // { maxAge: '30d' },
-))
 
 app.use(router)
 

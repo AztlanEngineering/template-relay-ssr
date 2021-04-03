@@ -16,10 +16,9 @@ module.exports = {
 
   output:{
     path    :path.resolve(__dirname, 'api/'),
-    filename:'renderer.js',
+    filename:'ssr.js',
     // publicPath:'/'
     libraryTarget:'commonjs2'
-    // libraryTarget
   },
 
   mode   :'production',

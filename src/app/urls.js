@@ -1,1 +1,1 @@
-export SITE from 'app/site/urls'
+export { default as SITE } from 'app/site/urls'

@@ -23,13 +23,14 @@
     "testconfig:stylelint": "stylelint src/styles/local.scss",
     "test:eslint": "eslint --ext .jsx,.js src/",
     "test:stylelint": "stylelint src/**/*.scss --rd --rdd --risd --color --formatter verbose",
-    "test":"npm run test:stylelint && npm run test:eslint",
     "fix:stylelint": "npm run test:stylelint -- --fix",
     "fix:eslint": "npm run test:eslint -- --fix",
     "link:ds": "npm link @pareto-engineering/design-system",
     "ssr": "NODE_ENV=development SSR=true webpack --watch --config ./webpack.ssr.server.js",
     "compile:renderer": "NODE_ENV=production SSR=true webpack --config ./webpack.ssr.renderer.js",
-    "build-all": "npm run compile:client:prod && npm run compile:renderer"
+    "sitemap": "webpack --watch --config ./webpack.sitemap.server.js",
+    "compile:sitemap": "webpack --config ./webpack.sitemap.renderer.js",
+    "build-all": "npm run compile:client:prod && npm run compile:renderer && npm run compile:sitemap"
   },
   "repository": {
     "type": "git",
@@ -45,6 +46,7 @@
     "@loadable/component": "^5.14.1",
     "@loadable/server": "^5.14.2",
     "@pareto-engineering/design-system": "0.0.1-alpha.4",
+    "date-fns": "^2.19.0",
     "node-fetch": "^2.6.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
