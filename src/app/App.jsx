@@ -41,7 +41,7 @@ This will often show up in search results. This is set up using Helmet."
         />
 
       </Helmet>
-      <h1>Hello application with Helmet</h1>
+      <h1>Hello application with Helmet And SSR</h1>
       <SSRSuspense fallback="Loading...">
         <FetcherExample />
         <Button className="x-accent1">
