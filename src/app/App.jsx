@@ -1,15 +1,11 @@
 import * as React from 'react'
-import { useEffect, Suspense } from 'react'
 import SSRSuspense from 'app/SSRSuspense'
 import { Button, Card } from '@pareto-engineering/design-system'
 import { Helmet } from 'react-helmet'
 // import { graphql } from 'babel-plugin-relay/macro';
 
 import {
-  useQueryLoader,
   useLazyLoadQuery,
-  useRelayEnvironment,
-  usePreloadedQuery,
 } from 'react-relay/hooks'
 
 function FetcherExample() {
@@ -32,21 +28,21 @@ function FetcherExample() {
   )
 }
 
-const App = () =>
-  // const environment = useRelayEnvironment()
-  // console.log(2222778877, environment.getStore().getSource())
-  //
-  (
+const App = () => {
+  console.log('Launching the app')
+  return (
     <>
       <Helmet>
         <title>This title is set up using react helmet</title>
-        <meta name="description" 
-content="This is an example of a meta description. 
-This will often show up in search results. This is set up using Helmet."/>
-        
+        <meta
+          name="description"
+          content="This is an example of a meta description.
+This will often show up in search results. This is set up using Helmet."
+        />
+
       </Helmet>
       <h1>Hello application with Helmet</h1>
-      <SSRSuspense fallback='Loading...'>
+      <SSRSuspense fallback="Loading...">
         <FetcherExample />
         <Button className="x-accent1">
           Test
@@ -55,10 +51,8 @@ This will often show up in search results. This is set up using Helmet."/>
           Test
         </Card>
       </SSRSuspense>
-
-      {/*
-    */}
     </>
   )
+}
 
 export default App

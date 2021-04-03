@@ -1,5 +1,7 @@
+/* eslint-disable no-console */
+
 /* eslint-disable react/jsx-filename-extension */
-import path from 'path'
+// import path from 'path'
 import * as React from 'react'
 import ReactDOMServer from 'react-dom/server' // Not in use if we use apollo own renderer
 //
@@ -13,26 +15,21 @@ import { Helmet } from 'react-helmet'
 
 import BaseApp from 'app/BaseApp'
 
-import {
-  Environment,
-  // Network,
-  RecordSource,
-  Store,
-} from 'relay-runtime'
 import template from 'assets/html/index.html'
 import environment from '../environment'
 
 /*
 import styleNames from '@pareto-engineering/bem'
-console.log('The two following should return if SSR is properly configured with CSS Modules', styleNames, styleNames.base)
+console.log('The two following should return if SSR is \
+properly configured with CSS Modules', styleNames, styleNames.base)
 */
 
-//global.fetch = require('node-fetch')
+// global.fetch = require('node-fetch')
 
-//const statsFile = path.resolve(__dirname, '../public/loadable-stats.json')
+// const statsFile = path.resolve(__dirname, '../public/loadable-stats.json')
 
 import stats from '../../public/loadable-stats.json'
-  /*
+/*
    We create an extractor from the statsFile */
 
 const extractor = new ChunkExtractor({ stats })
@@ -47,7 +44,7 @@ export default async (req, res) => {
       context={routerContext}
     >
       <BaseApp relayEnvironment={environment} />
-    </StaticRouter>
+    </StaticRouter>,
   )
   await ssrPrepass(appJsx)
 
@@ -55,22 +52,6 @@ export default async (req, res) => {
   //  extractor.collectChunks(appJsx)
   // )
   const queryRecords = environment.getStore().getSource().toJSON()
-
-  /*
-  const appJsxStore = (
-    <StaticRouter
-      location={req.originalUrl || req.url}
-      context={routerContext}
-    >
-      <BaseApp relayEnvironment={new Environment({
-        network:environment.getNetwork(),
-        store  :new Store(new RecordSource(queryRecords)),
-      })}
-      />
-    </StaticRouter>
-  )
-  await ssrPrepass(appJsxStore)
-  */
 
   const html = ReactDOMServer.renderToString(
     appJsx,
@@ -106,8 +87,8 @@ export default async (req, res) => {
     template
       .replace('<div id="main"></div>', `<div id="main">${html}</div>`)
       .replace('</body>',
-        scriptTags +
-        `<script> window.__RELAY_PAYLOADS__ = ${JSON.stringify(queryRecords)}; </script>`
+        `${scriptTags
+        }<script> window.__RELAY_PAYLOADS__ = ${JSON.stringify(queryRecords)}; </script>`
         + '</body>')
       .replace('<title></title>', linkTags + styleTags + helmet.title.toString() + helmet.meta.toString())
       .replace(/(\r\n|\n|\r)/gm, '') // Minification

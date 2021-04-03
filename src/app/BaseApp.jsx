@@ -6,7 +6,7 @@ const BaseApp = ({ relayEnvironment }) => {
   const a = 3
   console.log(a)
   //
-  return(
+  return (
     <RelayEnvironmentProvider environment={relayEnvironment}>
       <App />
     </RelayEnvironmentProvider>

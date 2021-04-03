@@ -7,10 +7,4 @@ git add schema.graphql
 echo "\n\n** PRE-COMMIT => Pre Compiling Relay"
 npm run relay
 
-echo "\n\n** PRE-COMMIT => Fix Stylelint"
-npm run fix:stylelint
-
-echo "\n\n** PRE-COMMIT => Fix ESLint"
-npm run fix:eslint
-
 exit 0

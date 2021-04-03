@@ -7,4 +7,3 @@ Loading.defaultProps = {
 }
 
 export default Loading
-
