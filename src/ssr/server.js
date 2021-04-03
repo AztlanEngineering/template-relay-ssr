@@ -16,11 +16,14 @@ const logRequestStart = (req, res, next) => {
 
 app.use(logRequestStart)
 
+console.log(787878, path.resolve(__dirname, '..', 'public'))
+
+
 router.use('[-a-z1-9\/]+', serverRenderer)
-router.use(express.static(path.resolve(__dirname, '..', '..', 'public')))
+//router.use(express.static(path.resolve(__dirname, '..', '..', 'public')))
 router.use(express.static(
-  path.resolve(__dirname, '..', '..', 'dist', 'static'),
-  { maxAge: '30d' },
+  path.resolve(__dirname, '..', 'public'),
+  //{ maxAge: '30d' },
 ))
 
 app.use(router)

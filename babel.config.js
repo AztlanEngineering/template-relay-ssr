@@ -54,6 +54,7 @@ module.exports = function (api) {
     )
   }
 
+  /*
   if (isSSR) {
     plugins.push(
       ['css-modules-transform', {
@@ -63,7 +64,7 @@ module.exports = function (api) {
       },
       ],
     )
-  }
+  } */
 
   return {
     presets,

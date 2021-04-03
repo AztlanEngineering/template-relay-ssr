@@ -6,6 +6,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
 
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const LoadablePlugin = require('@loadable/webpack-plugin')
 
 module.exports = {
   entry:[
@@ -14,6 +15,13 @@ module.exports = {
 
   resolve:{
     extensions:['.ts', '.tsx', '.js', '.jsx'],
+    alias:{
+      'react'           :path.resolve('./node_modules/react'),
+      'react-dom'       :path.resolve('./node_modules/react-dom'),
+      //'react-intl'      :path.resolve('./node_modules/react-intl'),
+      'react-router-dom':path.resolve('./node_modules/react-router-dom'),
+      'react-ga'        :path.resolve('./node_modules/react-ga')
+    }
   },
 
   output:{
@@ -47,11 +55,16 @@ module.exports = {
       systemvars:true,
     }),
 
+    new LoadablePlugin(),
+
     new HtmlWebpackPlugin({
       template:'./src/assets/html/index.html',
     }),
 
-    new MiniCssExtractPlugin(),
+    new MiniCssExtractPlugin({
+      filename:'heyheyhey.css',
+      chunkFilename:(props) => console.log(props) || '[name].css'
+    }),
 
     new BundleAnalyzerPlugin({
       analyzerMode  :'static',

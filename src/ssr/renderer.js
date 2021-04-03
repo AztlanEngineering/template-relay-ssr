@@ -1,10 +1,11 @@
 /* eslint-disable react/jsx-filename-extension */
+import path from 'path'
 import * as React from 'react'
 import ReactDOMServer from 'react-dom/server' // Not in use if we use apollo own renderer
 //
 import ssrPrepass from 'react-ssr-prepass'
 
-// import { ChunkExtractor } from '@loadable/server'
+import { ChunkExtractor } from '@loadable/server'
 
 import { StaticRouter } from 'react-router-dom'
 
@@ -28,16 +29,17 @@ console.log('The two following should return if SSR is properly configured with 
 
 //global.fetch = require('node-fetch')
 
-/* const statsFile = path.resolve(__dirname, '../dist/loadable-stats.json')
+const statsFile = path.resolve(__dirname, '../public/loadable-stats.json')
+  /*
    We create an extractor from the statsFile */
 
+const extractor = new ChunkExtractor({ statsFile })
 const routerContext = {}
 
 export default async (req, res) => {
-  // const extractor = new ChunkExtractor({ stats })
   //
 
-  const appJsx = (
+  const appJsx = extractor.collectChunks(
     <StaticRouter
       location={req.originalUrl || req.url}
       context={routerContext}
@@ -83,18 +85,18 @@ export default async (req, res) => {
 
   // You can now collect your script tags
 
-  // const scriptTags = extractor.getScriptTags() // or extractor.getScriptElements();
-  // console.log('SCRIPT', extractor.getScriptTags())
+  const scriptTags = extractor.getScriptTags() // or extractor.getScriptElements();
+  console.log('SCRIPT', extractor.getScriptTags())
 
   // You can also collect your "preload/prefetch" links
 
-  // const linkTags = extractor.getLinkTags() // or extractor.getLinkElements();
-  // console.log('LINK', extractor.getLinkTags())
+  const linkTags = extractor.getLinkTags() // or extractor.getLinkElements();
+  console.log('LINK', extractor.getLinkTags())
 
   // And you can even collect your style tags (if you use "mini-css-extract-plugin")
 
-  // const styleTags = extractor.getStyleTags() // or extractor.getStyleElements();
-  // console.log('STYLE', extractor.getStyleTags())
+  const styleTags = extractor.getStyleTags() // or extractor.getStyleElements();
+  console.log('STYLE', extractor.getStyleTags())
 
   const helmet = Helmet.renderStatic()
 
@@ -102,10 +104,10 @@ export default async (req, res) => {
     template
       .replace('<div id="main"></div>', `<div id="main">${html}</div>`)
       .replace('</body>',
-      //  scriptTags
+        scriptTags +
         `<script> window.__RELAY_PAYLOADS__ = ${JSON.stringify(queryRecords)}; </script>`
         + '</body>')
-    .replace('<title></title>', helmet.title.toString() + helmet.meta.toString() /*+ linkTags + styleTags*/)
+      .replace('<title></title>', linkTags + styleTags + helmet.title.toString() + helmet.meta.toString())
       .replace(/(\r\n|\n|\r)/gm, '') // Minification
       .replace(/\s\s+/g, ''), // Minification
   )

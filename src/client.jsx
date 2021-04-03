@@ -3,7 +3,11 @@ import { render } from 'react-dom'
 import BaseApp from 'app/BaseApp'
 import environment from './environment'
 
-import('styles/local.scss')
+import(
+  /* webpackPreload:true */
+  /* webpackChunkName:'styles' */
+  'styles/local.scss'
+)
 
 const rootElement = document.getElementById('main')
 

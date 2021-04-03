@@ -17,6 +17,13 @@ import {
   perfMiddleware,
 } from 'react-relay-network-modern'
 
+let queryRecords
+if (typeof window !== 'undefined') {
+  /* eslint-disable no-underscore-dangle -- special case */
+  queryRecords = JSON.parse(window.__RELAY_PAYLOADS__)
+  /* eslint-enable no-underscore-dangle */
+}
+
 const network = new RelayNetworkLayer([
   urlMiddleware({
     url:process.env.GRAPHQL_ENDPOINT,
@@ -25,7 +32,7 @@ const network = new RelayNetworkLayer([
   perfMiddleware(),
   errorMiddleware(),
 ])
-const source = new RecordSource()
+const source = new RecordSource(queryRecords)
 const store = new Store(source)
 
 const environment = new Environment({

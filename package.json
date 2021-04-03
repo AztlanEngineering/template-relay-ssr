@@ -25,9 +25,7 @@
     "fix:stylelint": "npm run test:stylelint -- --fix",
     "fix:eslint": "npm run test:eslint -- --fix",
     "link:ds": "npm link @pareto-engineering/design-system",
-    "renderer:start": "nodemon src/ssr/server.js",
-    "rs": "npm run renderer:start",
-    "ss": "NODE_ENV=development SSR=true webpack --watch --config ./webpack.ssr.server.js"
+    "ssr": "NODE_ENV=development SSR=true webpack --watch --config ./webpack.ssr.server.js"
   },
   "repository": {
     "type": "git",
@@ -40,6 +38,8 @@
   },
   "homepage": "https://github.com/HelloPareto/template-react#readme",
   "dependencies": {
+    "@loadable/component": "^5.14.1",
+    "@loadable/server": "^5.14.2",
     "@pareto-engineering/design-system": "0.0.1-alpha.4",
     "node-fetch": "^2.6.1",
     "react": "^17.0.2",
@@ -57,9 +57,9 @@
     "@babel/plugin-transform-runtime": "^7.13.10",
     "@babel/preset-env": "^7.13.12",
     "@babel/preset-react": "^7.12.13",
+    "@loadable/webpack-plugin": "^5.14.2",
     "babel-eslint": "^10.1.0",
     "babel-loader": "^8.2.2",
-    "babel-plugin-css-modules-transform": "^1.6.2",
     "babel-plugin-inline-import": "^3.0.0",
     "babel-plugin-module-resolver": "^4.1.0",
     "babel-plugin-relay": "^11.0.1",
@@ -85,6 +85,7 @@
     "nodemon-webpack-plugin": "^4.5.0",
     "postcss-loader": "^5.2.0",
     "postcss-preset-env": "^6.7.0",
+    "react-loadable-ssr-addon": "^1.0.1",
     "relay-compiler": "^11.0.1",
     "relay-config": "^11.0.1",
     "sass": "^1.32.8",

@@ -12,6 +12,13 @@ module.exports = {
 
   resolve:{
     extensions:['.ts', '.tsx', '.js', '.jsx'],
+    alias:{
+      'react'           :path.resolve('./node_modules/react'),
+      'react-dom'       :path.resolve('./node_modules/react-dom'),
+      //'react-intl'      :path.resolve('./node_modules/react-intl'),
+      'react-router-dom':path.resolve('./node_modules/react-router-dom'),
+      'react-ga'        :path.resolve('./node_modules/react-ga')
+    }
     /*
     fallback: {
       "fs": false,
@@ -75,12 +82,6 @@ module.exports = {
 
   module:{
     rules:[
-      {
-        test:/\.(jpe?g|png|gif|ico|woff|woff2)$/, // <=== match if you have required extension listed here or add it
-        use :{
-          loader:'url-loader',
-        },
-      },
       {
         test   :/\.(j|t)s(x?)$/,
         exclude:/node_modules/,
