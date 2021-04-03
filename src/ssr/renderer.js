@@ -29,11 +29,13 @@ console.log('The two following should return if SSR is properly configured with 
 
 //global.fetch = require('node-fetch')
 
-const statsFile = path.resolve(__dirname, '../public/loadable-stats.json')
+//const statsFile = path.resolve(__dirname, '../public/loadable-stats.json')
+
+import stats from '../../public/loadable-stats.json'
   /*
    We create an extractor from the statsFile */
 
-const extractor = new ChunkExtractor({ statsFile })
+const extractor = new ChunkExtractor({ stats })
 const routerContext = {}
 
 export default async (req, res) => {
