@@ -26,7 +26,7 @@ module.exports = {
 
   plugins:[
     new Dotenv({
-      path      :'./.env', // load this now instead of the ones in '.env'
+      path      :'./.env.prod', // load this now instead of the ones in '.env'
       // load '.env.example' to verify '.env' vars are all set. Can be a string to a different file.
       safe      :true,
       // load 'process.env' variables which will trump anything local per dotenv specs.

@@ -29,7 +29,7 @@
     "link:ds": "npm link @pareto-engineering/design-system",
     "ssr": "NODE_ENV=development SSR=true webpack --watch --config ./webpack.ssr.server.js",
     "compile:renderer": "NODE_ENV=production SSR=true webpack --config ./webpack.ssr.renderer.js",
-    "build": "npm run compile:client:prod && npm run compile:renderer"
+    "build-all": "npm run compile:client:prod && npm run compile:renderer"
   },
   "repository": {
     "type": "git",
