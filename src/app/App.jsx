@@ -33,7 +33,7 @@ const App = () => {
   return (
     <>
       <Helmet>
-        <title>This title is set up using react helmet</title>
+        <title>This title is set up using react helmet using SSR</title>
         <meta
           name="description"
           content="This is an example of a meta description.
