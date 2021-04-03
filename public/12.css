@@ -1,0 +1,1 @@
+:export{base:ds;modifierCompact:compact;modifierGhost:ghost;modifierTransparent:transparent;wrapperGroup:group}.ds.segment{border:var(--theme-border);border-radius:var(--border-radius)}.ds.segment .title{font-weight:600;margin:unset}.ds.segment>footer,.ds.segment>header,.ds.segment>main{padding:.5em 1em}.ds.segment>footer{border-top:var(--theme-border)}
