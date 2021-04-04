@@ -62,8 +62,8 @@ module.exports = {
     }),
 
     new MiniCssExtractPlugin({
-      filename:'heyheyhey.css',
-      chunkFilename:(props) => console.log(props) || '[name].css'
+      //filename:'heyheyhey.css',
+      //chunkFilename:(props) => console.log(props) || '[name].css'
     }),
 
     new BundleAnalyzerPlugin({

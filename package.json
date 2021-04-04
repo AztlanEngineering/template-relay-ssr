@@ -30,7 +30,7 @@
     "compile:renderer": "NODE_ENV=production SSR=true webpack --config ./webpack.ssr.renderer.js",
     "sitemap": "webpack --watch --config ./webpack.sitemap.server.js",
     "compile:sitemap": "webpack --config ./webpack.sitemap.renderer.js",
-    "cleanup":"rm -rf ./public && rm -rf ./api",
+    "cleanup": "rm -rf ./public && rm -rf ./api",
     "build-all": "npm run cleanup && npm run compile:client:prod && npm run compile:renderer && npm run compile:sitemap"
   },
   "repository": {
@@ -46,7 +46,7 @@
   "dependencies": {
     "@loadable/component": "^5.14.1",
     "@loadable/server": "^5.14.2",
-    "@pareto-engineering/design-system": "0.0.1-alpha.6",
+    "@pareto-engineering/design-system": "0.0.1-alpha.7",
     "date-fns": "^2.19.0",
     "node-fetch": "^2.6.1",
     "react": "^17.0.2",
