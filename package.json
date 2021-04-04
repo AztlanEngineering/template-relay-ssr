@@ -46,7 +46,7 @@
   "dependencies": {
     "@loadable/component": "^5.14.1",
     "@loadable/server": "^5.14.2",
-    "@pareto-engineering/design-system": "0.0.1-alpha.7",
+    "@pareto-engineering/design-system": "^0.0.1-alpha.7",
     "date-fns": "^2.19.0",
     "node-fetch": "^2.6.1",
     "react": "^17.0.2",
