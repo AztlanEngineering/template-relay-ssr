@@ -10,10 +10,13 @@ module.exports = {
   ],
 
   target:'node',
+  /*
   externals: [nodeExternals({
-    // this WILL include `jquery` and `webpack/hot/dev-server` in the bundle, as well as `lodash/*`
-    allowlist: [/@pareto-engineering/]
+    allowlist: [
+      /@pareto-engineering/,
+    ]
   })],
+  */
 
   resolve:{
     extensions:['.ts', '.tsx', '.js', '.jsx'],
@@ -56,7 +59,11 @@ module.exports = {
     rules:[
       {
         test   :/\.(j|t)s(x?)$/,
-        exclude:/node_modules/,
+        //exclude:/node_modules/,
+        include: [
+          path.resolve(__dirname, "src"),
+          path.resolve(__dirname, "node_modules/@pareto-engineering")
+        ],
         use    :[
           {
             loader:'babel-loader',
