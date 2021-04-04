@@ -12,6 +12,13 @@ module.exports = {
 
   resolve:{
     extensions:['.ts', '.tsx', '.js', '.jsx'],
+    alias:{
+      'react'           :path.resolve('./node_modules/react'),
+      'react-dom'       :path.resolve('./node_modules/react-dom'),
+      //'react-intl'      :path.resolve('./node_modules/react-intl'),
+      'react-router-dom':path.resolve('./node_modules/react-router-dom'),
+      'react-ga'        :path.resolve('./node_modules/react-ga')
+    }
   },
 
   output:{
