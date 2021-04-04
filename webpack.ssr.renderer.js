@@ -2,6 +2,7 @@ const path = require('path')
 const webpack = require('webpack')
 const Dotenv = require('dotenv-webpack')
 const NodemonPlugin = require('nodemon-webpack-plugin') // Ding
+const nodeExternals = require('webpack-node-externals')
 
 module.exports = {
   entry:[
@@ -9,6 +10,7 @@ module.exports = {
   ],
 
   target:'node',
+  externals: [nodeExternals()],
 
   resolve:{
     extensions:['.ts', '.tsx', '.js', '.jsx'],
