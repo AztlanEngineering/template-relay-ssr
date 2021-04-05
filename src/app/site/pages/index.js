@@ -1,2 +1,2 @@
-export { Home } from './Home'
-export { Team } from './Team'
+export { default as Home } from './Home'
+export { default as Team } from './Team'

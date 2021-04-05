@@ -18,11 +18,10 @@ const rootElement = document.getElementById('main')
 /* When main pagedelivered by SSR, not sure why, js is loaded twice for Loadable components
   console.log(rootElement.hasChildNodes(), rootElement.innerHTML) */
 
-render(
+const jsx = (
   <BrowserRouter>
     <BaseApp relayEnvironment={environment} />
-  </BrowserRouter>,
-  rootElement,
+  </BrowserRouter>
 )
 
 loadableReady(() => {

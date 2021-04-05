@@ -9,7 +9,7 @@ import { useLazyLoadQuery } from 'react-relay/hooks'
 import {
   Page,
   Title,
-  Button
+  Button,
 } from '@pareto-engineering/design-system'
 
 function FetcherExample() {
@@ -23,7 +23,7 @@ function FetcherExample() {
     // {id: 4},
     // {fetchPolicy: 'store-only'},
   )
-  return  JSON.stringify(data)
+  return JSON.stringify(data)
 }
 
 const Home = () => (
@@ -49,8 +49,10 @@ This will often show up in search results. This is set up using Helmet."
     <Page.Section
       id="main"
     >
-      <p>Welcome to this SSR template. 
-      Here is a list of features that should work out of the box.</p>
+      <p>
+        Welcome to this SSR template.
+        Here is a list of features that should work out of the box.
+      </p>
       <ul>
         <li>
           GraphQL SSR :
@@ -62,17 +64,20 @@ This will often show up in search results. This is set up using Helmet."
           This should also appear in the source code of the page, as well as in
           {' '}
           <code>window.__RELAY_PAYLOADS__</code>
-          . Also, if not using SSR mode, 
+          . Also, if not using SSR mode,
           no queries should be sent over the network (store hydrated from query).
         </li>
         <li>
           Helmet (view source of page. The
+          {' '}
           <code>title</code>
           {' '}
-          tag should be set up to "Helmet Title")
+          tag should be set up to &quot;Helmet Title&quot;)
         </li>
-        <li>Preloading of JS and CSS resources. Look at the source code. 
-        Essential CSS/JS resources should have both a preload link and a loading link.</li>
+        <li>
+          Preloading of JS and CSS resources. Look at the source code.
+          Essential CSS/JS resources should have both a preload link and a loading link.
+        </li>
         <li>
           Inclusion of the design system :
           <Button>Test Button</Button>

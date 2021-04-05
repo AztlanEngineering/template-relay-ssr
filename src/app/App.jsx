@@ -4,12 +4,11 @@ import { SwitchRouteMap } from '@pareto-engineering/design-system'
 
 import routes from './routes'
 
-
 const App = () => {
   console.log('Launching the app')
   return (
     <>
-      <SwitchRouteMap routes={ routes } />
+      <SwitchRouteMap routes={routes} />
     </>
   )
 }
