@@ -46,7 +46,7 @@
   "dependencies": {
     "@loadable/component": "^5.14.1",
     "@loadable/server": "^5.14.2",
-    "@pareto-engineering/design-system": "0.0.1-alpha.8",
+    "@pareto-engineering/design-system": "^0.0.1-alpha.9",
     "date-fns": "^2.19.0",
     "node-fetch": "^2.6.1",
     "react": "^17.0.2",
@@ -64,6 +64,7 @@
     "@babel/plugin-transform-runtime": "^7.13.10",
     "@babel/preset-env": "^7.13.12",
     "@babel/preset-react": "^7.12.13",
+    "@loadable/babel-plugin": "^5.13.2",
     "@loadable/webpack-plugin": "^5.14.2",
     "babel-eslint": "^10.1.0",
     "babel-loader": "^8.2.2",

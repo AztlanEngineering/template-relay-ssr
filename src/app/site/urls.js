@@ -4,4 +4,5 @@ export default {
   HOME   :'/',
   PRICING:'/pricing',
   ABOUT  :'/about',
+  TEAM   :'/team',
 }

@@ -46,6 +46,7 @@ module.exports = function (api) {
         },
       },
     ],
+    '@loadable/babel-plugin',
   ]
 
   if (isProd) {

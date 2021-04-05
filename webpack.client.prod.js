@@ -41,6 +41,9 @@ module.exports = {
     // hot:true,
     host            :'0.0.0.0',
     disableHostCheck:true,
+    historyApiFallback: {
+      index: 'index.html'
+    }
   },
 
   mode:'production',

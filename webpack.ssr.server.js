@@ -13,17 +13,17 @@ module.exports = {
   /*
   externals: [nodeExternals({
     allowlist: [/@pareto-engineering/]
-  })],*/
+  })], */
 
   resolve:{
     extensions:['.ts', '.tsx', '.js', '.jsx'],
-    alias:{
-      'react'           :path.resolve('./node_modules/react'),
+    alias     :{
+      react             :path.resolve('./node_modules/react'),
       'react-dom'       :path.resolve('./node_modules/react-dom'),
-      //'react-intl'      :path.resolve('./node_modules/react-intl'),
+      // 'react-intl'      :path.resolve('./node_modules/react-intl'),
       'react-router-dom':path.resolve('./node_modules/react-router-dom'),
-      'react-ga'        :path.resolve('./node_modules/react-ga')
-    }
+      'react-ga'        :path.resolve('./node_modules/react-ga'),
+    },
   },
 
   output:{
@@ -92,11 +92,11 @@ module.exports = {
     rules:[
       {
         test   :/\.(j|t)s(x?)$/,
-        include: [
-          path.resolve(__dirname, "src"),
-          path.resolve(__dirname, "node_modules/@pareto-engineering")
+        include:[
+          path.resolve(__dirname, 'src'),
+          path.resolve(__dirname, 'node_modules/@pareto-engineering'),
         ],
-        use    :[
+        use:[
           {
             loader:'babel-loader',
           },

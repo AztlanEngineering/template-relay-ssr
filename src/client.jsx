@@ -1,5 +1,7 @@
 import * as React from 'react'
-import { render } from 'react-dom'
+import { render, hydrate } from 'react-dom'
+import { BrowserRouter } from 'react-router-dom'
+import { loadableReady } from '@loadable/component'
 import BaseApp from 'app/BaseApp'
 import environment from './environment'
 
@@ -17,9 +19,25 @@ const rootElement = document.getElementById('main')
   console.log(rootElement.hasChildNodes(), rootElement.innerHTML) */
 
 render(
-  <BaseApp relayEnvironment={environment} />,
+  <BrowserRouter>
+    <BaseApp relayEnvironment={environment} />
+  </BrowserRouter>,
   rootElement,
 )
+
+loadableReady(() => {
+  if (rootElement.hasChildNodes()) {
+    hydrate(
+      jsx,
+      rootElement,
+    )
+  } else {
+    render(
+      jsx,
+      rootElement,
+    )
+  }
+})
 
 if (module.hot) {
   module.hot.accept()

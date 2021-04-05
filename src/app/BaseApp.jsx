@@ -3,7 +3,7 @@ import { RelayEnvironmentProvider } from 'react-relay/hooks'
 import App from 'app/App'
 
 const BaseApp = ({ relayEnvironment }) => {
-  const a = 3
+  const a = 'Initializing app'
   console.log(a)
   //
   return (
