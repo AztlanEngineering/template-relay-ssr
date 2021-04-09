@@ -3,11 +3,13 @@
 module.exports = function (api) {
   const isProd = api.cache(() => process.env.NODE_ENV === 'production')
   const isSSR = process.env.SSR === 'true'
+  // const isSitemap = process.env.SITEMAP === 'true'
 
   if (process.env.NODE_ENV || process.env.SSR || process.env.SITEMAP) {
     console.log('OK => Compiling in Babel')
     console.log(`OK => NODE_ENV=${process.env.NODE_ENV}`)
     console.log(`OK => SSR=${process.env.SSR}`)
+    console.log(`OK => SITEMAP=${process.env.SITEMAP}`)
   }
 
   const presets = [

@@ -28,8 +28,8 @@
     "link:ds": "npm link @pareto-engineering/design-system",
     "ssr": "NODE_ENV=development SSR=true webpack --watch --config ./webpack.ssr.server.js",
     "compile:ssr": "NODE_ENV=production SSR=true webpack --config ./webpack.ssr.renderer.js",
-    "sitemap": "webpack --watch --config ./webpack.sitemap.server.js",
-    "compile:sitemap": "webpack --config ./webpack.sitemap.renderer.js",
+    "sitemap": "SITEMAP=true webpack --watch --config ./webpack.sitemap.server.js",
+    "compile:sitemap": "SITEMAP=true webpack --config ./webpack.sitemap.renderer.js",
     "cleanup": "rm -rf ./public && rm -rf ./api",
     "build-all": "npm run cleanup && npm run compile:client:prod && npm run compile:ssr && npm run compile:sitemap"
   },
