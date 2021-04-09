@@ -15,13 +15,13 @@ module.exports = {
 
   resolve:{
     extensions:['.ts', '.tsx', '.js', '.jsx'],
-    alias:{
-      'react'           :path.resolve('./node_modules/react'),
+    alias     :{
+      react             :path.resolve('./node_modules/react'),
       'react-dom'       :path.resolve('./node_modules/react-dom'),
-      //'react-intl'      :path.resolve('./node_modules/react-intl'),
+      // 'react-intl'      :path.resolve('./node_modules/react-intl'),
       'react-router-dom':path.resolve('./node_modules/react-router-dom'),
-      'react-ga'        :path.resolve('./node_modules/react-ga')
-    }
+      'react-ga'        :path.resolve('./node_modules/react-ga'),
+    },
   },
 
   output:{
@@ -37,16 +37,16 @@ module.exports = {
       path.resolve(__dirname, './src/assets/images'),
     ],
     // compress: true,
-    port            :3002,
+    port              :3002,
     // hot:true,
-    host            :'0.0.0.0',
-    disableHostCheck:true,
+    host              :'0.0.0.0',
+    disableHostCheck  :true,
     historyApiFallback:true,
   },
 
   // The following line is a temproary fix for HMR
   // https://stackoverflow.com/questions/64987723/hot-module-replacement-hmr-waiting-for-update-signal-from-wds-forever-ho/64988081#64988081
-  target: 'web',
+  target:'web',
 
   mode:'production',
   // devtool  :'source-map',
@@ -67,8 +67,9 @@ module.exports = {
     }),
 
     new MiniCssExtractPlugin({
-      //filename:'heyheyhey.css',
-      //chunkFilename:(props) => console.log(props) || '[name].css'
+      filename     :'main.css?[contenthash:5]',
+      chunkFilename:'[name].css?[contenthash:5]',
+      // chunkFilename:(props) => console.log(props) || '[name].css'
     }),
 
     new BundleAnalyzerPlugin({
