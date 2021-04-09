@@ -41,10 +41,12 @@ module.exports = {
     // hot:true,
     host            :'0.0.0.0',
     disableHostCheck:true,
-    historyApiFallback: {
-      index: 'index.html'
-    }
+    historyApiFallback:true,
   },
+
+  // The following line is a temproary fix for HMR
+  // https://stackoverflow.com/questions/64987723/hot-module-replacement-hmr-waiting-for-update-signal-from-wds-forever-ho/64988081#64988081
+  target: 'web',
 
   mode:'production',
   // devtool  :'source-map',

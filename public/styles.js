@@ -1,1 +1,1 @@
-(globalThis.__LOADABLE_LOADED_CHUNKS__=globalThis.__LOADABLE_LOADED_CHUNKS__||[]).push([[532],{8531:(_,A,D)=>{"use strict";D.r(A)}}]);
+(self.__LOADABLE_LOADED_CHUNKS__=self.__LOADABLE_LOADED_CHUNKS__||[]).push([[532],{8531:(_,A,D)=>{"use strict";D.r(A)}}]);
