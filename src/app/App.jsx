@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { SwitchRouteMap } from '@pareto-engineering/design-system'
+import { SwitchRouteMap } from 'app/common/components'
 // import { graphql } from 'babel-plugin-relay/macro';
 
 import routes from './routes'
