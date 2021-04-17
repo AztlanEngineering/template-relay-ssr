@@ -78,6 +78,15 @@ module.exports = {
       openAnalyzer  :false,
     }),
 
+    new CopyPlugin({
+      patterns:[
+        { from: './src/assets/images', to: './' },
+        // { from: './node_modules/@redlibre/assets/fonts', to: './' },
+        // { from: './node_modules/@redlibre/assets/images', to: './' },
+        // { from: './node_modules/@redlibre/assets/favicons', to: './' },
+      ],
+    }),
+
   ],
 
   module:{
