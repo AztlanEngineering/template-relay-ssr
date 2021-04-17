@@ -33,7 +33,8 @@ import * as URLS from 'app/urls'
 
 import template from './template.xml'
 
-const isVerbose = process.env.VERBOSE === 'True'
+const isDebug = process.env.DEBUG === 'TRUE'
+const isVerbose = isDebug
 
 const SITE_MAP = {
   HOME:{

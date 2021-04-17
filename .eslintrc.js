@@ -14,7 +14,7 @@ module.exports = {
   globals:{
     graphql:'readonly',
   },
-  parser :'babel-eslint',
+  parser :'@babel/eslint-parser',
   extends:['airbnb'],
   plugins:[
     'graphql',

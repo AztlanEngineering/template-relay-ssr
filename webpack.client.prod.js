@@ -110,7 +110,7 @@ module.exports = {
               url    :false,
               modules:{
                 // We only activate CSS modules for the file containing the BEM rules
-                auto:(resourcePath) => resourcePath.includes('@pareto-engineering/bem'),
+                auto:(resourcePath) => resourcePath.search(/@pareto-engineering[\\/]bem/) > -1,
               },
             },
           }, {

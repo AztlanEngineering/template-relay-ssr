@@ -25,14 +25,21 @@ if (typeof window !== 'undefined') {
   queryRecords = getRecords()
 }
 
-const network = new RelayNetworkLayer([
+const isDebug = process.env.DEBUG === 'TRUE'
+
+const network = new RelayNetworkLayer(isDebug ? [
   urlMiddleware({
     url:process.env.GRAPHQL_ENDPOINT,
   }),
   loggerMiddleware(),
   perfMiddleware(),
   errorMiddleware(),
+] : [
+  urlMiddleware({
+    url:process.env.GRAPHQL_ENDPOINT,
+  }),
 ])
+
 const source = new RecordSource(queryRecords)
 const store = new Store(source)
 

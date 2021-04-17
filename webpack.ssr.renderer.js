@@ -20,24 +20,24 @@ module.exports = {
 
   resolve:{
     extensions:['.ts', '.tsx', '.js', '.jsx'],
-    alias:{
-      'react'           :path.resolve('./node_modules/react'),
+    alias     :{
+      react             :path.resolve('./node_modules/react'),
       'react-dom'       :path.resolve('./node_modules/react-dom'),
-      //'react-intl'      :path.resolve('./node_modules/react-intl'),
+      // 'react-intl'      :path.resolve('./node_modules/react-intl'),
       'react-router-dom':path.resolve('./node_modules/react-router-dom'),
-      'react-ga'        :path.resolve('./node_modules/react-ga')
-    }
+      'react-ga'        :path.resolve('./node_modules/react-ga'),
+    },
   },
 
   output:{
-    path    :path.resolve(__dirname, 'api/'),
-    filename:'ssr.js',
+    path         :path.resolve(__dirname, 'api/'),
+    filename     :'ssr.js',
     // publicPath:'/'
-    libraryTarget:'commonjs2'
+    libraryTarget:'commonjs2',
   },
 
-  mode   :'production',
-  //devtool:'source-map',
+  mode:'production',
+  // devtool:'source-map',
 
   plugins:[
     new Dotenv({
@@ -59,12 +59,12 @@ module.exports = {
     rules:[
       {
         test   :/\.(j|t)s(x?)$/,
-        //exclude:/node_modules/,
-        include: [
-          path.resolve(__dirname, "src"),
-          path.resolve(__dirname, "node_modules/@pareto-engineering")
+        // exclude:/node_modules/,
+        include:[
+          path.resolve(__dirname, 'src'),
+          path.resolve(__dirname, 'node_modules/@pareto-engineering'),
         ],
-        use    :[
+        use:[
           {
             loader:'babel-loader',
           },
@@ -82,7 +82,7 @@ module.exports = {
               url    :false,
               modules:{
                 // We only activate CSS modules for the file containing the BEM rules
-                auto            :(resourcePath) => resourcePath.includes('@pareto-engineering/bem'),
+                auto            :(resourcePath) => resourcePath.search(/@pareto-engineering[\\/]bem/) > -1,
                 // exportGlobals: true,
                 // namedExport:true,
                 exportOnlyLocals:true,
@@ -96,7 +96,7 @@ module.exports = {
       },
       {
         test   :/\.(s?)css$/i,
-        exclude:/@pareto-engineering\/bem/,
+        exclude:/@pareto-engineering[\\/]bem/,
         loader :'ignore-loader',
       },
 

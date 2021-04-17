@@ -44,7 +44,7 @@ jobs:
     needs: test
     runs-on: ubuntu-latest
     env:
-      VERBOSE: False
+      DEBUG: TRUE
       GRAPHQL_ENDPOINT: https://api2.redlibre.mx/graphql
     steps:
     - uses: actions/checkout@v2
